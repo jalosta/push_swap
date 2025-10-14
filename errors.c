@@ -6,7 +6,7 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 13:53:02 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/10/14 14:52:27 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/10/14 17:35:01 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,19 @@ void	demolish(t_token **stack)
 	*stack = NULL;
 }
 
+void	error(void)
+{
+	write(2, "Error\n", 6);
+	exit(1);
+}
+
 void	free_matrix(char **argv, int i)
 {
 	if (!argv || !*argv)
 		return ;
 	while (argv[i])
 		free(argv[i++]);
-	free(argv - 1);
+	free(argv);
 }
 
 void	err_demolish(t_token **a, char **argv, bool free_argv)
@@ -64,7 +70,7 @@ bool	bad_syntax(char *s)
 bool	err_dup(t_token *a, int nbr)
 {
 	if (!a)
-		return (false);
+		return (0);
 	while (a)
 	{
 		if (a->value == nbr)

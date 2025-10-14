@@ -6,7 +6,7 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 17:15:50 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/10/14 14:58:55 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/10/14 17:23:20 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,19 @@ typedef struct s_token
 }					t_token;
 
 bool				ft_isspace(int c);
-int					ft_isdigit(int c);
+bool				bad_syntax(char *s);
+bool				err_dup(t_token *a, int nbr);
+bool				ft_isdigit(int c);
+bool				stack_sorted(t_token *stack);
+bool				stack_tidy(t_token *stack);
 int					ft_atoi(const char *str);
 size_t				ft_strlen(const char *s);
-char				**ft_split(char const *s);
+t_token				*ft_lstlast(t_token *lst);
+char				**ft_split(char *s);
+void				error(void);
 void				demolish(t_token **stack);
 void				free_matrix(char **argv, int i);
 void				err_demolish(t_token **a, char **argv, bool free_argv);
-bool				bad_syntax(char *s);
-bool				err_dup(t_token *a, int nbr);
+void				ft_lstadd_back(t_token **lst, t_token *new);
 
 #endif

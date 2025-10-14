@@ -6,13 +6,13 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 16:18:17 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/10/14 14:52:38 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/10/14 17:26:12 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static size_t	word_count(const char *s, size_t count)
+static size_t	word_count(char *s, size_t count)
 {
 	while (*s)
 	{
@@ -36,7 +36,7 @@ static void	*free_all(char **s, int count)
 	return (NULL);
 }
 
-static int	copy_word(char **result, const char *start, size_t len, int i)
+static int	copy_word(char **result, char *start, size_t len, int i)
 {
 	int	j;
 
@@ -53,11 +53,11 @@ static int	copy_word(char **result, const char *start, size_t len, int i)
 	return (1);
 }
 
-char	**ft_split(char const *s)
+char	**ft_split(char *s)
 {
-	char		**result;
-	const char	*start;
-	int			i;
+	char	**result;
+	char	*start;
+	int		i;
 
 	result = malloc((word_count(s, 0) + 1) * sizeof(char *));
 	if (!result)

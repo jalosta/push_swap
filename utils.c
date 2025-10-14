@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 08:48:38 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/10/14 13:14:58 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:15:14 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ bool	ft_isspace(int c)
 	return (c == ' ');
 }
 
-int	ft_isdigit(int c)
+bool	ft_isdigit(int c)
 {
-    return (c >= '0' && c <= '9');
+	return (c >= '0' && c <= '9');
 }
 
 int	ft_atoi(const char *str)
@@ -45,12 +45,12 @@ int	ft_atoi(const char *str)
 	return (sign * result);
 }
 
-size_t ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-    size_t i;
+	size_t i;
 
-    i = 0;
-    while (s[i])
-        i++;
-    return (i);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
