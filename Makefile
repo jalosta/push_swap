@@ -1,18 +1,14 @@
-NAME = ?
+NAME = push_swap.a
 
-SRC = ?
+SRC = ft_split.c utils.c errors.c instructions.c
 
 OBJ = $(SRC:.c=.o)
 
-all:	$(OBJ)
-	ar rcs $(NAME) $(OBJ)
-
+$(NAME): $(OBJ)
+	@ar rcs $(NAME) $(OBJ)
+all: $(NAME)
 clean:
-	rm $(OBJ)
-
+	@rm -f $(OBJ)
 fclean: clean
-	rm $(NAME)
-
-re: 	fclean all
-
-.PHONY:	all, clean, fclean, re
+	@rm -f $(NAME)
+re: clean all
