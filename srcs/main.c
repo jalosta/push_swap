@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/17 16:09:47 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/10/17 17:55:54 by jalosta-         ###   ########.fr       */
+/*   Created: 2025/10/17 16:14:11 by jalosta-          #+#    #+#             */
+/*   Updated: 2025/10/17 19:01:31 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "../push_swap.h"
 
-# include <limits.h>
-# include <stdlib.h>
-typedef struct s_token
+int main(int argc, char **argv)
 {
-	int				value;
-	struct s_token	*next;
-}					t_token;
-typedef struct s_stack
-{
-	t_token			*top;
-}					t_stack;
-int					ft_atoi(const char *str);
-#endif
+    t_token *a;
+    
+    if (argc < 2 || !argv[1][0])
+        return 0;
+    if (argc == 2)
+        argv = ft_split(argv[1]);
+    stack(&a, argv, argc);
+}

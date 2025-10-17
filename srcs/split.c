@@ -1,28 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/17 16:09:47 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/10/17 17:55:54 by jalosta-         ###   ########.fr       */
+/*   Created: 2025/10/17 19:01:45 by jalosta-          #+#    #+#             */
+/*   Updated: 2025/10/17 19:01:46 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-
-# include <limits.h>
-# include <stdlib.h>
-typedef struct s_token
-{
-	int				value;
-	struct s_token	*next;
-}					t_token;
-typedef struct s_stack
-{
-	t_token			*top;
-}					t_stack;
-int					ft_atoi(const char *str);
-#endif

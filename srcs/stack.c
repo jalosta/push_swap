@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/13 08:48:38 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/10/14 15:15:14 by jalosta-         ###   ########.fr       */
+/*   Created: 2025/10/17 16:46:51 by jalosta-          #+#    #+#             */
+/*   Updated: 2025/10/17 18:37:48 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-bool	ft_isspace(int c)
-{
-	return (c == ' ');
-}
-
-bool	ft_isdigit(int c)
-{
-	return (c >= '0' && c <= '9');
-}
+#include "../push_swap.h"
 
 int	ft_atoi(const char *str)
 {
-	int	sign;
-	int	result;
+	int		sign;
+	long	result;
 
-	while (ft_isspace(*str))
-		str++;
 	sign = 1;
 	if (*str == '+' || *str == '-')
 	{
@@ -37,20 +25,35 @@ int	ft_atoi(const char *str)
 		str++;
 	}
 	result = 0;
-	while (ft_isdigit(*str))
+	while (*str)
 	{
+		if (!(*str >= '0' && *str <= '9'))
+			error();
 		result = result * 10 + (*str - '0');
 		str++;
 	}
-	return (sign * result);
+	if (result <= INT_MIN || result >= INT_MAX)
+		error();
+	return (sign * (int)result);
 }
 
-size_t	ft_strlen(const char *s)
+void stack_token(int token, t_token **a)
 {
-	size_t i;
+    t_token *new_token;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+    new_token->value = token;
+}
+
+void stack(t_token **a, char **argv, int argc)
+{
+	int token;
+
+	while (argv[--argc])
+	{
+		token = ft_atoi(*argv);
+        if (find_duplicate(token, *a))
+            error();
+        stack_token(token, a);
+        argv++;
+	}
 }

@@ -1,14 +1,14 @@
-NAME = push_swap.a
+NAME = push_swap
 
-SRC = ft_split.c utils.c errors.c instructions.c push_swap.c
+SRCS = 	srcs/main.c
 
-OBJ = $(SRC:.c=.o)
+OBJS = $(SRCS:.c=.o)
 
-$(NAME): $(OBJ)
-	@ar rcs $(NAME) $(OBJ)
+$(NAME): $(OBJS)
+	gcc -o $(NAME) $(OBJS)
 all: $(NAME)
 clean:
-	@rm -f $(OBJ)
+	rm -f $(OBJS)
 fclean: clean
-	@rm -f $(NAME)
-re: clean all
+	rm -f $(NAME)
+re: fclean all
