@@ -1,0 +1,17 @@
+// sort_three(c, a);
+// t_token *progress = a->top;
+// printf("A: ");
+// while (progress)
+// {
+// 	printf("%i ", progress->value);
+// 	progress = progress->next;
+// }
+// printf("\n");
+// progress = b->top;
+// printf("B: ");
+// while (progress)
+// {
+// 	printf("%i ", progress->value);
+// 	progress = progress->next;
+// }
+// printf("\n");
