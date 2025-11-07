@@ -6,54 +6,20 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 00:11:48 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/10/31 12:11:16 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/11/07 10:20:33 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static int	get_index_max(t_stack *a)
+static void	sort_three(t_stack *s, t_context *c)
 {
-	t_token	*current;
-	int		max;
-
-	current = a->top;
-	max = current->index;
-	while (current)
-	{
-		if (current->index > max)
-			max = current->index;
-		current = current->next;
-	}
-	return (max);
-}
-
-static void	sort_three(t_stack *a, t_context *c)
-{
-	int	top;
-	int	mid;
-	int	bot;
-
-	top = a->top->value;
-	mid = a->top->next->value;
-	bot = a->bot->value;
-	if (top > mid && mid < bot && top < bot)
-		sa(c);
-	else if (top < mid && mid > bot && top < bot)
-	{
-		printf("top: %d\nmid: %d\n", top, mid);
-		rra(c);
-		sa(c);
-	}
-	else if (top < mid && mid > bot && top > bot)
-		rra(c);
-	else if (top > mid && mid < bot && top > bot)
+	if (!s->top->index)
 		ra(c);
-	else if (top > mid && mid > bot)
-	{
-		sa(c);
+	else if (!s->top->next->index)
 		rra(c);
-	}
+	if (s->top->next->index > s->top->index)
+		sa(c);
 }
 
 static int	cheapest(t_stack *s, int index)
@@ -78,29 +44,17 @@ static void	climb(t_context *c, int distance, bool is_a)
 {
 	if (is_a)
 	{
-		while (distance > 0)
-		{
+		while (distance-- > 1)
 			ra(c);
-			distance--;
-		}
-		while (distance < 0)
-		{
+		while (distance++ < -1)
 			rra(c);
-			distance++;
-		}
 	}
 	if (!is_a)
 	{
-		while (distance > 0)
-		{
+		while (distance-- > 1)
 			rb(c);
-			distance--;
-		}
-		while (distance < 0)
-		{
+		while (distance++ < -1)
 			rrb(c);
-			distance++;
-		}
 	}
 }
 
@@ -165,13 +119,12 @@ static void	make_move(t_context *c, t_move *m)
 	if ((ca > 0 && cb > 0) || (ca < 0 && cb < 0))
 	{
 		common = fmin(abs(ca), abs(cb));
-		while (common > 0)
+		while (common-- >= 1)
 		{
 			if (ca > 0)
 				rr(c);
 			else
 				rrr(c);
-			common--;
 		}
 		if (ca > 0)
 			ca -= fmin(abs(m->cost_a), abs(m->cost_b));
@@ -242,9 +195,8 @@ static void	skimpy_sort(t_stack *a, t_stack *b, t_context *c)
 
 	pb(c);
 	pb(c);
-	while (a->size > 3)
+	while (a->size > 0)
 		reap_cheapest(a, b, c);
-	sort_three(a, c);
 	printf("\n");
 	climb(c, cheapest(b, 0), false);
 	while (b->size > 0)

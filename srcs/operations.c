@@ -6,52 +6,52 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 00:11:18 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/10/31 06:31:44 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/11/06 23:57:30 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	swap(t_stack *stack)
+void	swap(t_stack *s)
 {
 	int	temp;
 
-	temp = stack->top->value;
-	stack->top->value = stack->top->next->value;
-	stack->top->next->value = temp;
-	temp = stack->top->index;
-	stack->top->index = stack->top->next->index;
-	stack->top->next->index = temp;
+	temp = s->top->value;
+	s->top->value = s->top->next->value;
+	s->top->next->value = temp;
+	temp = s->top->index;
+	s->top->index = s->top->next->index;
+	s->top->next->index = temp;
 }
 
-void	rot(t_stack *stack)
+void	rot(t_stack *s)
 {
 	t_token	*first;
 	t_token	*last;
 
-	first = stack->top;
-	last = stack->bot;
-	stack->top = first->next;
-	stack->top->prev = NULL;
+	first = s->top;
+	last = s->bot;
+	s->top = first->next;
+	s->top->prev = NULL;
 	last->next = first;
 	first->prev = last;
 	first->next = NULL;
-	stack->bot = first;
+	s->bot = first;
 }
 
-void	rev_rot(t_stack *stack)
+void	rev_rot(t_stack *s)
 {
 	t_token	*last;
 	t_token	*first;
 
-	last = stack->bot;
-	first = stack->top;
-	stack->bot = last->prev;
-	stack->bot->next = NULL;
+	last = s->bot;
+	first = s->top;
+	s->bot = last->prev;
+	s->bot->next = NULL;
 	last->next = first;
 	first->prev = last;
 	last->prev = NULL;
-	stack->top = last;
+	s->top = last;
 }
 
 void	push(t_stack *src, t_stack *dst)

@@ -6,7 +6,7 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:09:47 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/10/31 09:04:58 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/11/07 06:33:03 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void				swap(t_stack *stack);
 void				rot(t_stack *stack);
 void				rev_rot(t_stack *stack);
 void				push(t_stack *src, t_stack *dst);
-void				error(int msg, t_context *c);
+void				error(char *msg, t_context *c);
 void				demolish(t_stack *s);
 void				sa(t_context *c);
 void				sb(t_context *c);
@@ -71,9 +71,9 @@ void				rrr(t_context *c);
 void				pa(t_context *c);
 void				pb(t_context *c);
 void				push_swap(t_context *c, t_stack *a, t_stack *b, int size);
-void				stack(int token_value, t_context *c);
+void				stack(t_stack *a, int token_value, t_context *c);
 void				parse(char *arg, t_context *c);
 int					tokenize(char *arg, t_context *c);
-bool				sorted(t_token *tokens);
+bool				sorted(t_token *t);
 
 #endif

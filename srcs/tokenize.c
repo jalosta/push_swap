@@ -6,21 +6,11 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 00:10:38 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/10/31 06:29:35 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/11/07 10:11:10 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
 
 int	tokenize(char *arg, t_context *c)
 {
@@ -28,7 +18,7 @@ int	tokenize(char *arg, t_context *c)
 	int		sign;
 
 	sign = 1;
-	if (*arg == '+' || *arg == '-')
+	if (*arg == '-' || *arg == '+')
 	{
 		if (*arg == '-')
 			sign = -1;
@@ -38,66 +28,68 @@ int	tokenize(char *arg, t_context *c)
 	while (*arg)
 	{
 		if (!(*arg >= '0' && *arg <= '9'))
-			error(2, c);
+			error("Invalid Token", c);
 		value = value * 10 + (*arg - '0');
 		arg++;
 	}
-	if (value * sign <= INT_MIN || value * sign >= INT_MAX)
-		error(3, c);
-	return ((int)value * sign);
+	if (value * (long)sign <= INT_MIN || value * (long)sign >= INT_MAX)
+		error("Limits", c);
+	return (sign * (int)value);
 }
 
-void	stack(int token_value, t_context *c)
+static bool	is_duplicate(t_token *t, int target)
 {
-	t_token	*new_token;
-	t_token	*top;
-
-	top = c->a.top;
-	while (top)
+	while (t)
 	{
-		if (top->value == token_value)
-			error(4, c);
-		top = top->next;
-	}
-	new_token = malloc(sizeof(t_token));
-	if (!new_token)
-		error(0, c);
-	new_token->value = token_value;
-	new_token->prev = NULL;
-	top = c->a.top;
-	new_token->next = top;
-	if (!top)
-		c->a.bot = new_token;
+		if (target == t->value)
+			return (true);
+		t = t->next;
+    }
+	return (false);
+}
+
+void	stack(t_stack *a, int token_value, t_context *c)
+{
+	t_token	*new;
+
+	if (is_duplicate(a->top, token_value))
+		error("Duplicate", c);
+	new = malloc(sizeof(t_token));
+	if (!new)
+		error(NULL, c);
+	new->value = token_value;
+	new->prev = NULL;
+	new->next = a->top;
+	if (!new->next)
+		a->bot = new;
 	else
-		top->prev = new_token;
-	c->a.top = new_token;
-	c->a.size++;
+		a->top->prev = new;
+	a->top = new;
+	a->size++;
 }
 
 void	parse(char *arg, t_context *c)
 {
-	char	*end;
-	char	*start;
-	char	temp;
+	char *end;
+	char *start;
 
 	if (*arg == ' ')
-		error(5, c);
-	end = arg + ft_strlen(arg);
+		error("Leading Space", c);
+	end = arg + strlen(arg);
 	if (*(end - 1) == ' ')
-		error(5, c);
-	while (end > arg)
+		error("Trailing Space", c);
+	while (arg < end)
 	{
-		if (*(end - 1) == ' ' && (--end > arg && *(end - 1) == ' '))
-			error(5, c);
-		if (end == arg)
-			return ;
 		start = end - 1;
-		while (start > arg && *(start - 1) != ' ')
+		while (arg < start && *(start - 1) != ' ')
 			start--;
-		temp = *end;
 		*end = '\0';
-		stack(tokenize(start, c), c);
-		*end = temp;
+		stack(&c->a, tokenize(start, c), c);
+		*end = ' ';
 		end = start;
+		if (*(end - 1) == ' ')
+			end--;
+		if (arg < end && *(end - 1) == ' ')
+			error("Syntax", c);
 	}
 }
