@@ -1,20 +1,31 @@
-==60035== Memcheck, a memory error detector
-==60035== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
-==60035== Using Valgrind-3.27.0.GIT-lbmacos and LibVEX; rerun with -h for copyright info
-==60035== Command: ./push_swap 66\ 040\ 005\ 062\ 079\ 017\ 042\ 098\ 033\ 028\ 029\ 031\ 070\ 036\ 090\ 085\ 078\ 020\ 068\ 035\ 051\ 021\ 057\ 075\ 027\ 047\ 080\ 039\ 046\ 094\ 059\ 077\ 060\ 010\ 100\ 099\ 043\ 093\ 053\ 081\ 076\ 001\ 074\ 015\ 019\ 038\ 006\ 004\ 096\ 018\ 095\ 008\ 084\ 037\ 023\ 013\ 052\ 045\ 007\ 092\ 003\ 058\ 014\ 056\ 086\ 082\ 061\ 011\ 063\ 041\ 064\ 002\ 012\ 016\ 030\ 025\ 054\ 048\ 044\ 088\ 067\ 087\ 049\ 034\ 072\ 055\ 032\ 050\ 089\ 073\ 022\ 071\ 026\ 083\ 097\ 024\ 069\ 009\ 065\ 091
-==60035== Parent PID: 60003
-==60035== 
-==60035== 
-==60035== HEAP SUMMARY:
-==60035==     in use at exit: 18,051 bytes in 162 blocks
-==60035==   total heap usage: 276 allocs, 114 frees, 25,195 bytes allocated
-==60035== 
-==60035== LEAK SUMMARY:
-==60035==    definitely lost: 0 bytes in 0 blocks
-==60035==    indirectly lost: 0 bytes in 0 blocks
-==60035==      possibly lost: 0 bytes in 0 blocks
-==60035==    still reachable: 0 bytes in 0 blocks
-==60035==         suppressed: 18,051 bytes in 162 blocks
-==60035== 
-==60035== For lists of detected and suppressed errors, rerun with: -s
-==60035== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 7 from 7)
+==76024== Memcheck, a memory error detector
+==76024== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==76024== Using Valgrind-3.26.0.GIT-lbmacos and LibVEX; rerun with -h for copyright info
+==76024== Command: ./push_swap 2 1 3
+==76024== Parent PID: 75987
+==76024== 
+==76024== 
+==76024== HEAP SUMMARY:
+==76024==     in use at exit: 18,051 bytes in 162 blocks
+==76024==   total heap usage: 179 allocs, 17 frees, 22,867 bytes allocated
+==76024== 
+==76024== LEAK SUMMARY:
+==76024==    definitely lost: 0 bytes in 0 blocks
+==76024==    indirectly lost: 0 bytes in 0 blocks
+==76024==      possibly lost: 0 bytes in 0 blocks
+==76024==    still reachable: 0 bytes in 0 blocks
+==76024==         suppressed: 18,051 bytes in 162 blocks
+==76024== 
+==76024== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 7 from 7)
+--76024-- 
+--76024-- used_suppression:      1 OSX1015:Leak01-printf /goinfre/jalosta-/homebrew/Cellar/valgrind/HEAD-0729784/libexec/valgrind/default.supp:814 suppressed: 4,096 bytes in 1 blocks
+--76024-- used_suppression:      2 OSX1015:dyld-4 /goinfre/jalosta-/homebrew/Cellar/valgrind/HEAD-0729784/libexec/valgrind/default.supp:764 suppressed: 4,128 bytes in 2 blocks
+--76024-- used_suppression:      1 OSX1015:Leak02-objc /goinfre/jalosta-/homebrew/Cellar/valgrind/HEAD-0729784/libexec/valgrind/default.supp:825 suppressed: 2,048 bytes in 1 blocks
+--76024-- used_suppression:     17 OSX1015:dyld-7 /goinfre/jalosta-/homebrew/Cellar/valgrind/HEAD-0729784/libexec/valgrind/default.supp:794 suppressed: 2,560 bytes in 74 blocks
+--76024-- used_suppression:     15 OSX1015:dyld-8 /goinfre/jalosta-/homebrew/Cellar/valgrind/HEAD-0729784/libexec/valgrind/default.supp:804 suppressed: 4,955 bytes in 81 blocks
+--76024-- used_suppression:      1 OSX1015:dyld-5 /goinfre/jalosta-/homebrew/Cellar/valgrind/HEAD-0729784/libexec/valgrind/default.supp:774 suppressed: 264 bytes in 3 blocks
+--76024-- used_suppression:      1 OSX1015:dyld-1 /goinfre/jalosta-/homebrew/Cellar/valgrind/HEAD-0729784/libexec/valgrind/default.supp:739
+--76024-- used_suppression:      2 OSX1015:dyld-3 /goinfre/jalosta-/homebrew/Cellar/valgrind/HEAD-0729784/libexec/valgrind/default.supp:755
+--76024-- used_suppression:      1 OSX1015:dyld-2 /goinfre/jalosta-/homebrew/Cellar/valgrind/HEAD-0729784/libexec/valgrind/default.supp:746
+==76024== 
+==76024== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 7 from 7)
