@@ -6,7 +6,7 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 14:27:36 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/12/09 19:40:43 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/12/10 21:46:56 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	demolish(t_stack s)
 	}
 }
 
-static bool	sorted(t_token *t)
+bool	sorted(t_token *t)
 {
 	while (t && t->next)
 	{
@@ -82,18 +82,14 @@ void print_results(t_token *t)
 int	main(int argc, char **argv)
 {
 	t_stack	a;
-	int		c;
 
 	if (argc < 2)
 		return (0);
 	a.top = NULL;
 	a.bot = NULL;
 	a.size = 0;
-	c = argc - 1;
-	while (c)
-		parser(argv[c--], &a);
-	if (a.size < 2)
-		error(&a, NULL);
+	while (argc)
+		parser(argv[--argc], &a);
 	index_tokens(a.top);
 	if (!sorted(a.top))
 		push_swap(&a);

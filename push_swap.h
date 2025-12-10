@@ -6,7 +6,7 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:19:56 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/12/09 19:40:56 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/12/10 20:30:24 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ void				push(t_stack *src, t_stack *dst);
 void				rotate(t_stack *s);
 void				rev_rotate(t_stack *s);
 void				push_swap(t_stack *a);
+bool				sorted(t_token *t);
 
 #endif
