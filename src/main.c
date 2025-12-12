@@ -6,35 +6,11 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 14:27:36 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/12/10 21:46:56 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:59:33 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-static void	demolish(t_stack s)
-{
-	t_token	*next;
-
-	while (s.size > 0)
-	{
-		next = s.top->next;
-		free(s.top);
-		s.top = next;
-		s.size--;
-	}
-}
-
-bool	sorted(t_token *t)
-{
-	while (t && t->next)
-	{
-		if (t->value > t->next->value)
-			return (false);
-		t = t->next;
-	}
-	return (true);
-}
 
 static void	index_tokens(t_token *top)
 {
@@ -49,7 +25,7 @@ static void	index_tokens(t_token *top)
 		i = 0;
 		while (current)
 		{
-			if (t->value < current->value)
+			if (t->value > current->value)
 				i++;
 			current = current->next;
 		}
@@ -58,41 +34,19 @@ static void	index_tokens(t_token *top)
 	}
 }
 
-void	error(t_stack *a, t_stack *b)
-{
-	demolish(*a);
-	if (b)
-		demolish(*b);
-	write(2, "Error\n", 6);
-	exit(1);
-}
-
-#include <stdio.h>
-void print_results(t_token *t)
-{
-	while (t)
-	{
-		printf("%i", t->value);
-		t = t->next;
-		if (t)
-			printf(" ");
-	}
-}
-
 int	main(int argc, char **argv)
 {
 	t_stack	a;
 
-	if (argc < 2)
+	if (argc < 2 || (argc == 2 && !argv[1][0]))
 		return (0);
 	a.top = NULL;
 	a.bot = NULL;
 	a.size = 0;
-	while (argc)
+	while (argc > 1)
 		parser(argv[--argc], &a);
 	index_tokens(a.top);
 	if (!sorted(a.top))
 		push_swap(&a);
-	print_results(a.top);
 	demolish(a);
 }

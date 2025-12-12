@@ -1,3 +1,5 @@
-make -s
-valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file="valgrind_push_swap.txt" ./push_swap 2 1 3
+make bonus -s
+
+ARG="6 1 8 2 4"; valgrind -s --leak-check=full --log-file="valgrind_push_swap.txt" ./push_swap $ARG | ./checker $ARG | cat -e
+
 make -s fclean

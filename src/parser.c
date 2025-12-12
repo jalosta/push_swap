@@ -6,22 +6,11 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 13:08:56 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/12/09 19:25:11 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/12/12 10:59:50 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-static bool	is_duplicate(t_stack a, int v)
-{
-	while (a.top)
-	{
-		if (v == a.top->value)
-			return (true);
-		a.top = a.top->next;
-	}
-	return (false);
-}
 
 static int	tokenizer(char *s, t_stack *a)
 {
