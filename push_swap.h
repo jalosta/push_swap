@@ -6,7 +6,7 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:19:56 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/12/12 15:22:45 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/12/14 13:57:13 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define PUSH_SWAP_H
 
 # include <limits.h>
+# include <math.h>
 # include <stdbool.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
@@ -57,10 +57,12 @@ bool				is_duplicate(t_stack a, int v);
 void				error(t_stack *a, t_stack *b);
 bool				sorted(t_token *t);
 void				demolish(t_stack s);
-int					find_min_max(t_token *t, bool min);
-void				set_targets(t_token *src, t_token *dst);
+t_token				*find_min_max(t_token *t, bool min);
+void				set_targets(t_token *src, t_token *dst, bool smaller);
 int					cheapest_climb(t_token *t, int i, int size);
 void				climb(t_stack *a, t_stack *b, int dis, bool for_a);
 void				push_swap(t_stack *a);
+void				cost_analysis(t_token *a, t_token *b, int a_len, int b_len);
+t_token				*cheapest_insert(t_token *t);
 
 #endif

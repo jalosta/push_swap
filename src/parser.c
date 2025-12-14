@@ -6,7 +6,7 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 13:08:56 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/12/12 10:59:50 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/12/14 14:39:33 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	parser(char *s, t_stack *a)
 		while (end > s && *(end - 1) == ' ')
 			end--;
 		if (end == s)
-			return ;
+			break ;
 		start = end;
 		while (start > s && *(start - 1) != ' ')
 			start--;

@@ -6,7 +6,7 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 19:47:58 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/12/12 08:30:26 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/12/14 14:30:00 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,47 +38,52 @@ static void	handle_instructions(t_stack *a, t_stack *b, char *ins)
 		error(a, b);
 }
 
-static void	fetch_parse_instructions(t_stack *a)
+static void	fetch_instructions(t_stack *a, t_stack *b)
 {
 	char	buffer[1];
 	int		i;
 	char	ins[5];
-	t_stack	b;
 
-	b.top = NULL;
-	b.bot = NULL;
-	b.size = 0;
 	i = 0;
 	while (read(STDIN_FILENO, buffer, 1))
 	{
 		if (*buffer == '\n')
 		{
 			ins[i] = '\0';
-			handle_instructions(a, &b, ins);
+			handle_instructions(a, b, ins);
 			i = 0;
 		}
 		else
 		{
 			ins[i++] = *buffer;
 			if (i >= 4)
-				error(a, &b);
+				error(a, b);
 		}
 	}
+}
+
+static void	initiate(t_stack *s)
+{
+	s->top = NULL;
+	s->bot = NULL;
+	s->size = 0;
 }
 
 int	main(int argc, char **argv)
 {
 	t_stack	a;
+	t_stack	b;
+	int		start_len;
 
-	a.top = NULL;
-	a.bot = NULL;
-	a.size = 0;
 	if (argc < 2 || (argc == 2 && !argv[1][0]))
 		return (0);
+	initiate(&a);
 	while (argc > 1)
 		parser(argv[--argc], &a);
-	fetch_parse_instructions(&a);
-	if (sorted(a.top))
+	initiate(&b);
+	start_len = a.size;
+	fetch_instructions(&a, &b);
+	if (sorted(a.top) && !b.size && a.size == start_len)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);

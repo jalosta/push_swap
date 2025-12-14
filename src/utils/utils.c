@@ -6,7 +6,7 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 10:57:45 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/12/12 14:51:10 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/12/14 12:22:52 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ bool	is_duplicate(t_stack a, int v)
 	while (a.top)
 	{
 		if (v == a.top->value)
-			return (true);
+			return (1);
 		a.top = a.top->next;
 	}
-	return (false);
+	return (0);
 }
 
 void	error(t_stack *a, t_stack *b)
@@ -64,8 +64,8 @@ bool	sorted(t_token *t)
 	while (t && t->next)
 	{
 		if (t->value > t->next->value)
-			return (false);
+			return (0);
 		t = t->next;
 	}
-	return (true);
+	return (1);
 }
