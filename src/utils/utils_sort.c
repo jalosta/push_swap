@@ -6,7 +6,7 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 12:08:38 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/12/14 14:55:48 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/12/16 17:06:16 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,8 @@ void	set_targets(t_token *src, t_token *dst, bool smaller)
 		cur = dst;
 		while (cur)
 		{
-			if ((smaller && cur->index < src->index && (!best
-						|| cur->index > best->index)) || (!smaller
-					&& cur->index > src->index && (!best
-						|| cur->index < best->index)))
+			if ((smaller && cur->i < src->i && (!best || cur->i > best->i))
+				|| (!smaller && cur->i > src->i && (!best || cur->i < best->i)))
 				best = cur;
 			cur = cur->next;
 		}
@@ -58,12 +56,12 @@ void	set_targets(t_token *src, t_token *dst, bool smaller)
 	}
 }
 
-int	cheapest_climb(t_token *t, int i, int size)
+int	cheapest_climb(t_token *t, int index, int size)
 {
 	int	dis;
 
 	dis = 0;
-	while (t && t->index != i)
+	while (t && t->i != index)
 	{
 		dis++;
 		t = t->next;
@@ -74,17 +72,17 @@ int	cheapest_climb(t_token *t, int i, int size)
 		return (dis - size);
 }
 
-void	cost_analysis(t_token *a, t_token *b, int a_len, int b_len)
+void	set_costs(t_stack *a, t_stack *b)
 {
-	t_token	*cur_a;
+	t_token	*cur;
 
-	cur_a = a;
-	while (cur_a)
+	cur = a->top;
+	while (cur)
 	{
-		cur_a->cost_a = cheapest_climb(a, cur_a->index, a_len);
-		if (cur_a->target)
-			cur_a->cost_b = cheapest_climb(b, cur_a->target->index, b_len);
-		cur_a = cur_a->next;
+		cur->c_a = cheapest_climb(a->top, cur->i, a->len);
+		if (cur->target)
+			cur->c_b = cheapest_climb(b->top, cur->target->i, b->len);
+		cur = cur->next;
 	}
 }
 
@@ -98,16 +96,15 @@ t_token	*cheapest_insert(t_token *t)
 	cheapest = NULL;
 	while (t)
 	{
-		if ((t->cost_a > 0 && t->cost_b > 0) || (t->cost_a < 0
-				&& t->cost_b < 0))
+		if ((t->c_a > 0 && t->c_b > 0) || (t->c_a < 0 && t->c_b < 0))
 		{
-			if (abs(t->cost_a) > abs(t->cost_b))
-				price = abs(t->cost_a);
+			if (abs(t->c_a) > abs(t->c_b))
+				price = abs(t->c_a);
 			else
-				price = abs(t->cost_b);
+				price = abs(t->c_b);
 		}
 		else
-			price = abs(t->cost_a) + abs(t->cost_b);
+			price = abs(t->c_a) + abs(t->c_b);
 		if (price < best_price)
 		{
 			best_price = price;

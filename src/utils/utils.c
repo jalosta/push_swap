@@ -6,7 +6,7 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 10:57:45 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/12/14 12:22:52 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/12/16 14:04:16 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	demolish(t_stack s)
 {
 	t_token	*next;
 
-	while (s.size > 0)
+	while (s.len > 0)
 	{
 		next = s.top->next;
 		free(s.top);
 		s.top = next;
-		s.size--;
+		s.len--;
 	}
 }
 
@@ -32,18 +32,18 @@ t_token	*find_min_max(t_token *t, bool min)
 	find = t;
 	while (t)
 	{
-		if ((min && find->index > t->index) || (!min && find->index < t->index))
+		if ((min && find->i > t->i) || (!min && find->i < t->i))
 			find = t;
 		t = t->next;
 	}
 	return (find);
 }
 
-bool	is_duplicate(t_stack a, int v)
+bool	is_duplicate(t_stack a, int value)
 {
 	while (a.top)
 	{
-		if (v == a.top->value)
+		if (value == a.top->n)
 			return (1);
 		a.top = a.top->next;
 	}
@@ -63,7 +63,7 @@ bool	sorted(t_token *t)
 {
 	while (t && t->next)
 	{
-		if (t->value > t->next->value)
+		if (t->n > t->next->n)
 			return (0);
 		t = t->next;
 	}

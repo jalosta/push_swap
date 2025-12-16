@@ -6,7 +6,7 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 13:08:56 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/12/14 14:39:33 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/12/16 15:34:30 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	tokenizer(char *s, t_stack *a)
 		if (!(*s >= '0' && *s <= '9'))
 			error(a, NULL);
 		value = value * 10 + (*s - '0');
-		if (value * (long)sign >= INT_MAX || (value * (long)sign) <= INT_MIN)
+		if (value * (long)sign > INT_MAX || (value * (long)sign) < INT_MIN)
 			error(a, NULL);
 		s++;
 	}
@@ -46,7 +46,7 @@ static void	stack_new_token(t_stack *a, int token_value)
 	new = malloc(sizeof(t_token));
 	if (!new)
 		error(a, NULL);
-	new->value = token_value;
+	new->n = token_value;
 	new->prev = NULL;
 	new->next = a->top;
 	if (!new->next)
@@ -54,7 +54,7 @@ static void	stack_new_token(t_stack *a, int token_value)
 	else
 		a->top->prev = new;
 	a->top = new;
-	a->size++;
+	a->len++;
 }
 
 void	parser(char *s, t_stack *a)

@@ -6,7 +6,7 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 18:15:33 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/12/12 11:25:17 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/12/16 13:46:05 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	swap(t_stack *s)
 {
 	int	temp;
 
-	temp = s->top->value;
-	s->top->value = s->top->next->value;
-	s->top->next->value = temp;
-	temp = s->top->index;
-	s->top->index = s->top->next->index;
-	s->top->next->index = temp;
+	temp = s->top->n;
+	s->top->n = s->top->next->n;
+	s->top->next->n = temp;
+	temp = s->top->i;
+	s->top->i = s->top->next->i;
+	s->top->next->i = temp;
 }
 
 void	push(t_stack *src, t_stack *dst)
@@ -41,8 +41,8 @@ void	push(t_stack *src, t_stack *dst)
 	else
 		dst->bot = to_push;
 	dst->top = to_push;
-	src->size--;
-	dst->size++;
+	src->len--;
+	dst->len++;
 }
 
 void	rotate(t_stack *s)

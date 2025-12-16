@@ -6,7 +6,7 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 19:47:58 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/12/14 14:30:00 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/12/16 13:49:51 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	initiate(t_stack *s)
 {
 	s->top = NULL;
 	s->bot = NULL;
-	s->size = 0;
+	s->len = 0;
 }
 
 int	main(int argc, char **argv)
@@ -81,9 +81,9 @@ int	main(int argc, char **argv)
 	while (argc > 1)
 		parser(argv[--argc], &a);
 	initiate(&b);
-	start_len = a.size;
+	start_len = a.len;
 	fetch_instructions(&a, &b);
-	if (sorted(a.top) && !b.size && a.size == start_len)
+	if (sorted(a.top) && !b.len && a.len == start_len)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
