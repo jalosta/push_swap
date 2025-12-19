@@ -14,7 +14,7 @@ The project offers a bonus part wherein an accompanying program must be develope
 Input: stack a formatted as a list of integers and stdin, where from the binary recieves its instructions.
 Output: displays "OK" if instructions sort the numbers, or "KO" if otherwise.
 ## Instructions
-The project includes a Makefile that compiles the source files to the required outputusing the flags -Wall, -Wextra, and -Werror.
+The project includes a Makefile that compiles the source files to the required output using the flags -Wall, -Wextra, and -Werror.
 
 To compile the mandatory part:
 ```
