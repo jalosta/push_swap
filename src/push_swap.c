@@ -6,7 +6,7 @@
 /*   By: jalosta- <jalosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 19:03:12 by jalosta-          #+#    #+#             */
-/*   Updated: 2025/12/16 17:10:52 by jalosta-         ###   ########.fr       */
+/*   Updated: 2025/12/19 15:57:32 by jalosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ static void	skimp_sort(t_stack *a, t_stack *b)
 
 	pb(a, b);
 	pb(a, b);
-	if (b->top->i < b->bot->i)
-		sb(b);
 	while (a->len > 3)
 	{
 		set_targets(a->top, b->top, 1);
